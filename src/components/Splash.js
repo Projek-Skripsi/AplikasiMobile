@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 export default function Splash ({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Beranda')
+      navigation.replace('Beranda')
     }, 3000)
   }, [])
 
