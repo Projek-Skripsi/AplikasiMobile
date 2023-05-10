@@ -5,9 +5,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Splash from '../components/Splash'
+import Login from './Login'
+import Daftar from './Daftar'
 import Home from './Beranda'
 import Riwayat from './Riwayat'
 import Akun from './Akun'
+import Rating from './Rating'
+import DetailPemesanan from './DetailPemesanan'
 
 const Tab = createBottomTabNavigator()
 const HomeStack = createNativeStackNavigator()
@@ -43,14 +47,26 @@ function Tabbar () {
 export default function Navigasi () {
   return (
     <NavigationContainer>
-        <HomeStack.Navigator initialRouteName='Splash'>
-            <HomeStack.Screen name='Splash' component={Splash} options={{
-              headerShown: false
-            }} />
-            <HomeStack.Screen name='Beranda' component={Tabbar} options={{
-              headerShown: false
-            }} />
-        </HomeStack.Navigator>
+      <HomeStack.Navigator initialRouteName='Splash'>
+          <HomeStack.Screen name='Splash' component={Splash} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='Beranda' component={Tabbar} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='Rating' component={Rating} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='DetailPemesanan' component={DetailPemesanan} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='Login' component={Login} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='Daftar' component={Daftar} options={{
+            headerShown: false
+          }} />
+      </HomeStack.Navigator>
     </NavigationContainer>
   )
 }

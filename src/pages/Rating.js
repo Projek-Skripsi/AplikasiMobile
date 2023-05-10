@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function Riwayat () {
+export default function Rating () {
   return (
     <View>
-      <Text style={{ color: 'black' }}>Riwayat</Text>
+      <Text style={{ color: 'black' }}>Rating</Text>
     </View>
   )
 }

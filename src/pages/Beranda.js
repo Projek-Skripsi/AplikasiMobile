@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, StatusBar, RefreshControl, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-native-paper'
+import Loading from '../components/Loading'
 import moment from 'moment'
 import { carousel, kategoriKolam, kolam, rating } from '../utils/datas'
 import { currencyFormat } from '../utils/mataUang'
@@ -23,13 +24,16 @@ export default function Beranda ({ navigation }) {
   const [getKolam, setGetKolam] = useState([])
   const [getRating, setGetRating] = useState([])
   const [refreshing, setRefreshing] = useState(false)
+  const [loading, setLoading] = useState(false)
   const hari = moment().format('dddd')
 
   useEffect(() => {
+    setLoading(true)
     setGetCarousel(carousel)
     setGetkategoriKolam(kategoriKolam)
     setGetKolam(kolam)
     setGetRating(rating)
+    setLoading(false)
   }, [])
 
   function refreshPage () {
@@ -41,9 +45,10 @@ export default function Beranda ({ navigation }) {
 
   return (
     <View style={{ flex: 1 }}>
+      <Loading visible={loading} />
       <ScrollView showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refreshPage} />} >
-        <StatusBar backgroundColor={'#106AF0'} barStyle="ligt-content" />
-        <View style={{ backgroundColor: '#106AF0' }}>
+        <StatusBar backgroundColor={'blue'} barStyle="light-content" />
+        <View style={{ backgroundColor: 'blue' }}>
           <View style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <Text style={styles.welcomeText}>Selamat Datang di Kolam Renang Sejahtera</Text>
             <Text style={styles.pengunjungText}>Perkiraan pengunjung hari ini : 120 orang</Text>
@@ -73,7 +78,7 @@ export default function Beranda ({ navigation }) {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity activeOpacity={0.9} style={styles.btn_pesan}>
+      <TouchableOpacity onPress={() => navigation.navigate('Daftar')} activeOpacity={0.9} style={styles.btn_pesan}>
         <Text style={{ color: 'white', fontSize: 25, paddingVertical: 10 }}>Beli Tiket</Text>
       </TouchableOpacity>
     </View>

@@ -4,7 +4,7 @@ import React from 'react'
 export default function Akun () {
   return (
     <View>
-      <Text>Akun</Text>
+      <Text style={{ color: 'black' }}>Akun</Text>
     </View>
   )
 }
