@@ -69,16 +69,16 @@ export default function Beranda ({ navigation }) {
             <View>
               <View style={[styles.menu, { alignItems: 'center' }]}>
                 <Text style={styles.menu_judul}>Ulasan</Text>
-                <Button textColor='#666666' onPress={() => navigation.navigate('Rating')} >Lihat Semua</Button>
+                <Button textColor='#666666' onPress={() => navigation.navigate('Rating', { AllRating: getRating })} >Lihat Semua</Button>
               </View>
-              {getRating.map((item) => (
-                <RatingList key={item.IdRating} rating={item} />
+              {getRating.map((item, index) => (
+                index <= 4 ? <RatingList key={item.IdRating} rating={item} /> : ''
               ))}
             </View>
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity onPress={() => navigation.navigate('Daftar')} activeOpacity={0.9} style={styles.btn_pesan}>
+      <TouchableOpacity onPress={() => navigation.navigate('TentangKami')} activeOpacity={0.9} style={styles.btn_pesan}>
         <Text style={{ color: 'white', fontSize: 25, paddingVertical: 10 }}>Beli Tiket</Text>
       </TouchableOpacity>
     </View>

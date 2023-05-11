@@ -12,6 +12,8 @@ import Riwayat from './Riwayat'
 import Akun from './Akun'
 import Rating from './Rating'
 import DetailPemesanan from './DetailPemesanan'
+import Peraturan from './Peraturan'
+import TentangKami from './TentangKami'
 
 const Tab = createBottomTabNavigator()
 const HomeStack = createNativeStackNavigator()
@@ -64,6 +66,12 @@ export default function Navigasi () {
             headerShown: false
           }} />
           <HomeStack.Screen name='Daftar' component={Daftar} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='Peraturan' component={Peraturan} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='TentangKami' component={TentangKami} options={{
             headerShown: false
           }} />
       </HomeStack.Navigator>

@@ -2,13 +2,13 @@ const perusahaan = [
   {
     IdPerusahaan: 1,
     NamaPerusahaan: 'Kolam Sejahtera',
-    Alamat: 'Jalan Sejatera No. 21, Helvetia Timur, Kec. Medan Helvetia, Kota Medan, Sumatera Utara',
-    Deskripsi: 'Kolam renang Sejahtera berdiri pada tahun 2013. Kolam ini memiliki banyak fasilitas yang dapat menjadi pilihan Anda untuk didatangin',
+    Alamat: 'Jalan Sejahtera No. 21, Helvetia Timur, Kec. Medan Helvetia, Kota Medan, Sumatera Utara',
+    Deskripsi: 'Kolam renang Sejahtera merupakan kolam ernang umum yang berdiri pada tahun 2013. Kolam ini memiliki banyak fasilitas yang dapat menjadi pilihan Anda untuk didatangin',
     JamBuka: '08:00',
     JamTutup: '18:00',
     Email: 'kolamsejatera@gmail.com',
-    Instagram: 'kolam_sejatera',
-    NoWA: '085212341234'
+    Instagram: 'kolamrenangsejahtera',
+    NoWA: '6281396428322'
   }
 ]
 
@@ -145,6 +145,70 @@ const rating = [
     Bintang: 1,
     Ulasan: null,
     TanggalUpload: '21 Januari 2023'
+  },
+  {
+    IdRating: 4,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
+    TanggalUpload: '12 Januari 2023'
+  },
+  {
+    IdRating: 5,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Komentar ke 5',
+    TanggalUpload: '12 Januari 2023'
+  },
+  {
+    IdRating: 6,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
+    TanggalUpload: '12 Januari 2023'
+  },
+  {
+    IdRating: 7,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
+    TanggalUpload: '12 Januari 2023'
+  },
+  {
+    IdRating: 8,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
+    TanggalUpload: '12 Januari 2023'
+  },
+  {
+    IdRating: 9,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
+    TanggalUpload: '12 Januari 2023'
+  },
+  {
+    IdRating: 10,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
+    TanggalUpload: '12 Januari 2023'
+  },
+  {
+    IdRating: 11,
+    IdPemesanan: 5,
+    IdPengguna: 2,
+    Bintang: 2,
+    Ulasan: 'Terlalu rame dan suara karoke sangat berisik 11',
+    TanggalUpload: '12 Januari 2023'
   }
 ]
 
@@ -244,4 +308,16 @@ const konfirmasiPembayaran = [
   }
 ]
 
-export { perusahaan, kolam, kategoriKolam, carousel, metodePembayaran, pengguna, rating, pemesanan, detailPemesanan, konfirmasiPembayaran }
+const peraturan = [
+  'Tidak diperkenankan pengunjung kolam renang anak-anak memasuki kolam renang dewasa begitupun sebaliknya. Apabila ingin pindah harus beli tiket baru.',
+  'Tiket yang sudah dibeli tidak bisa dikembalikan',
+  'Sesuaikan ketinggian anak anda dengan kedalaman kolam renang. Anak umur 7 tahun ke bawah dilarang masuk ke kolam dengan kedalaman 1,3 meter. Untuk menghindari hal-hal yang tidak di inginkan',
+  'Mohon maaf tidak diperkenankan bagi pengunjung yang sawan air untuk berenang di kolam renang Sejahtera. Untuk menghindari hal-hal yang tidak diinginkan',
+  'Mohon orang tua yang membawa anak kecil untuk tetap mengawasi anak anda  dengan penuh kewaspadaan dan jangan sampai lalai. Dan diharapkan untuk tidak meninggalkan anak anda sendirian di kolam renang tanpa pengawasan.',
+  'Diharapkan untuk memakai baju renang apabila sedang berenang. tidak diperbolehkan memakai bahan Jeans',
+  'Tidak diperbolehkan keluar lokasi kolam renang. Apabila ingin keluar, mohon untuk melapor ke petugas kami agar diberikan kertas ijin keluar sementara',
+  'Dilarang membawa minuman keras ke area kolam renang Sejahtera',
+  'Kolam Renang ini diawasi CCTV, mohon untuk tidak melakukan perbuatan asusila dan tindakan pencurian dan kekerasan di area kolam renang. Segala tindakan yang melanggar hukum akan kami laporkan kepihak berwajib.'
+]
+
+export { perusahaan, kolam, kategoriKolam, carousel, metodePembayaran, pengguna, rating, pemesanan, detailPemesanan, konfirmasiPembayaran, peraturan }
