@@ -125,7 +125,8 @@ const rating = [
   {
     IdRating: 1,
     IdPemesanan: 4,
-    IdPengguna: 1,
+    Nama: 'Mhd. Azhar',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 5,
     Ulasan: 'Tempatnya nyaman, dan teduh',
     TanggalUpload: '12 Desember 2022'
@@ -133,7 +134,8 @@ const rating = [
   {
     IdRating: 2,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
     TanggalUpload: '12 Januari 2023'
@@ -141,7 +143,8 @@ const rating = [
   {
     IdRating: 3,
     IdPemesanan: 6,
-    IdPengguna: 1,
+    Nama: 'Mhd. Azhar',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 1,
     Ulasan: null,
     TanggalUpload: '21 Januari 2023'
@@ -149,7 +152,8 @@ const rating = [
   {
     IdRating: 4,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
     TanggalUpload: '12 Januari 2023'
@@ -157,7 +161,8 @@ const rating = [
   {
     IdRating: 5,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Komentar ke 5',
     TanggalUpload: '12 Januari 2023'
@@ -165,7 +170,8 @@ const rating = [
   {
     IdRating: 6,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
     TanggalUpload: '12 Januari 2023'
@@ -173,7 +179,8 @@ const rating = [
   {
     IdRating: 7,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
     TanggalUpload: '12 Januari 2023'
@@ -181,7 +188,8 @@ const rating = [
   {
     IdRating: 8,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
     TanggalUpload: '12 Januari 2023'
@@ -189,7 +197,8 @@ const rating = [
   {
     IdRating: 9,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
     TanggalUpload: '12 Januari 2023'
@@ -197,7 +206,8 @@ const rating = [
   {
     IdRating: 10,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik',
     TanggalUpload: '12 Januari 2023'
@@ -205,7 +215,8 @@ const rating = [
   {
     IdRating: 11,
     IdPemesanan: 5,
-    IdPengguna: 2,
+    Nama: 'Irvan Moses',
+    UrlGambar: 'https://dikemas.com/uploads/2022/04/Banana-Juara_Duo-Kuning_Logoo-720x432.jpg',
     Bintang: 2,
     Ulasan: 'Terlalu rame dan suara karoke sangat berisik 11',
     TanggalUpload: '12 Januari 2023'

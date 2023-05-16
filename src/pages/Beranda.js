@@ -78,7 +78,7 @@ export default function Beranda ({ navigation }) {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity onPress={() => navigation.navigate('TentangKami')} activeOpacity={0.9} style={styles.btn_pesan}>
+      <TouchableOpacity onPress={() => navigation.navigate('Daftar')} activeOpacity={0.9} style={styles.btn_pesan}>
         <Text style={{ color: 'white', fontSize: 25, paddingVertical: 10 }}>Beli Tiket</Text>
       </TouchableOpacity>
     </View>

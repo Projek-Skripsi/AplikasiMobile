@@ -34,7 +34,6 @@ export default function Rating (props) {
     else {
       setRating(ratings.filter(item => item.Bintang === filter))
     }
-    // console.warn(rating)
   }
 
   useEffect(() => {

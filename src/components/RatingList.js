@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 // import { Avatar } from 'react-native-paper'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -9,10 +9,10 @@ export default function RatingList ({ rating }) {
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 5 }}>
                 <View>{/* avatar */}
-                  <Text style={{ color: 'black' }}>Avatar</Text>
+                <Image source={{ uri: rating.UrlGambar }} style={{ width: 40, height: 40, borderRadius: 50 }} resizeMode='stretch' />
                 </View>
                 <View>{/* nama dan tanggal */}
-                  <Text style={{ color: 'black' }}>Nama</Text>
+                  <Text style={{ color: 'black' }}>{rating.Nama}</Text>
                   <Text style={{ color: '#666666' }}>({rating.TanggalUpload})</Text>
                 </View>
             </View>
