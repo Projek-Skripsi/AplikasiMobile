@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "481005580114",
+    "project_id": "kolamsejahtera-c2d19",
+    "storage_bucket": "kolamsejahtera-c2d19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481005580114:android:0c49702cfd680da9fa548b",
+        "android_client_info": {
+          "package_name": "com.kolamsejahtera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481005580114-15m6jidbki723g8mho9c3rgn3psot6v5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-bwQd8i3dqa6e72MYDu0NHSYKOKwi58o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481005580114-15m6jidbki723g8mho9c3rgn3psot6v5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

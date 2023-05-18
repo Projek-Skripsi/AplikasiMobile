@@ -1,8 +1,9 @@
-import { View, Text, StatusBar, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StatusBar, Alert, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import { register } from '../confiqs/api'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Octicons from 'react-native-vector-icons/Octicons'
-// import Loading from '../components/Loading'
+import Loading from '../components/Loading'
 
 const styles = StyleSheet.create({
   loginText: { color: 'black', textAlign: 'center', fontFamily: 'Inter' },
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
 })
 
 export default function Daftar ({ navigation }) {
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [nama, setNama] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,9 +22,25 @@ export default function Daftar ({ navigation }) {
   const [colorPassword, setColorPassword] = useState('#666666')
   const [hidePassword, sethidePassword] = useState(true)
 
+  async function tambahData () {
+    if (nama === '' || email === '' || password === '') {
+      Alert.alert('Info', 'Pastikan semua data telah terisi!')
+    }
+    else {
+      const emailValid = email.toLowerCase()
+      setLoading(true)
+      const { error } = await register(nama, emailValid, password)
+      if (!error) {
+        Alert.alert('Berhasil', 'Silahkan login untuk masuk!')
+        navigation.replace('Login')
+      }
+      setLoading(false)
+    }
+  }
+
   return (
     <View style={{ flex: 1 }}>
-      {/* <Loading visible={loading} /> */}
+      <Loading visible={loading} />
       <StatusBar backgroundColor={'blue'} barStyle="light-content" />
       <View style={{ backgroundColor: 'blue' }}>
         <Image source={require('../assests/Logo.png')} resizeMode='stretch' style={{ width: 250, height: 150 }} />
@@ -47,7 +64,7 @@ export default function Daftar ({ navigation }) {
               {password ? <Octicons onPress={() => sethidePassword(!hidePassword)} name={hidePassword ? 'eye-closed' : 'eye'} color={colorPassword} size={20} /> : '' }
             </View>
           </View>
-          <TouchableOpacity onPress={() => console.warn('.replace(Login) => belum memiliki function')} activeOpacity={0.9} style={styles.btn_daftar}>
+          <TouchableOpacity onPress={tambahData} activeOpacity={0.9} style={styles.btn_daftar}>
             <Text style={{ color: 'white', fontSize: 25, paddingVertical: 10 }}>Daftar</Text>
           </TouchableOpacity>
           <Text style={{ color: '#666666', textAlign: 'center' }}>Sudah punya akun?
