@@ -25,3 +25,117 @@ export function register (nama, email, password) {
 export async function addDataRegister ({ IdPengguna, Nama, Email, UrlGambar = 'https://firebasestorage.googleapis.com/v0/b/kolamsejahtera-c2d19.appspot.com/o/profilTemplate.jpg?alt=media&token=250053b6-930e-4179-b8f2-a7aaa99fc8ce', Status = 'Aktif' }) {
   await api.post('/pengguna', { IdPengguna, Nama, Email, UrlGambar, Status })
 }
+
+export function login (email, password) {
+  return (
+    auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        const user = auth().currentUser.uid
+        return { error: false, dataLogin: user }
+      })
+      .catch((error) => {
+        Alert.alert(error.code, error.message)
+        return { error: true, dataLogin: '' }
+      })
+  )
+}
+
+export function logout () {
+  return (
+    auth().signOut()
+      .then(() => { return { error: false } })
+      .catch(() => { return { error: true } })
+  )
+}
+
+export function resetPassword (email) {
+  return (
+    auth().sendPasswordResetEmail(email)
+      .then(() => {
+        Alert.alert('Berhasil', 'Silahkan cek email Anda!')
+      })
+      .catch((error) => {
+        Alert.alert(error.code, error.message)
+      })
+  )
+}
+
+export async function getAllDataPengguna () {
+  try {
+    const response = await api.get('/pengguna')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataPengguna (IdPengguna) {
+  try {
+    const response = await api.get(`/pengguna/${IdPengguna}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataKategoriKolam () {
+  try {
+    const response = await api.get('/kategori')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataKolam () {
+  try {
+    const response = await api.get('/kolam')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataRating () {
+  try {
+    const response = await api.get('/rating')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataCarousel () {
+  try {
+    const response = await api.get('/carousel')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataPerusahaan () {
+  try {
+    const response = await api.get('/perusahaan')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataJumlahPengunjung (hariIni) {
+  try {
+    const response = await api.get(`/pemesanan/totalPengunjung/${hariIni}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}

@@ -1,8 +1,11 @@
-import { View, Text, StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, StatusBar, TouchableOpacity, Alert, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { CONFIQ } from '../utils/datas'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getDataPengguna, logout } from '../confiqs/api'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { pengguna } from '../utils/datas'
 import Profil from '../components/Profil'
+import Loading from '../components/Loading'
 
 const styles = StyleSheet.create({
   btn_NoUser: { borderWidth: 2, borderColor: '#106AF0', alignItems: 'center', borderRadius: 20, width: 150 },
@@ -12,15 +15,53 @@ const styles = StyleSheet.create({
 })
 
 export default function Akun ({ navigation }) {
-  const [user, setUser] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [authUser, setAuthUser] = useState(null)
+  const [pengguna, setPengguna] = useState([])
+
+  async function getAuthUser () {
+    const currentUser = await AsyncStorage.getItem(CONFIQ.authUser)
+    if (currentUser) {
+      const { data } = await getDataPengguna(currentUser)
+      setPengguna(data[0])
+    }
+    setAuthUser(currentUser)
+  }
 
   useEffect(() => {
-    setUser(pengguna[0])
+    setLoading(true)
+    getAuthUser()
+    setLoading(false)
   }, [])
+
+  async function onLogout () {
+    setLoading(true)
+    const { error } = await logout()
+    if (!error) {
+      await AsyncStorage.removeItem(CONFIQ.authUser)
+      // setAuthUser(null)
+      navigation.replace('Beranda')
+    }
+    setLoading(false)
+  }
+
+  function logoutHandler () {
+    Alert.alert('Info', 'Yakin ingin keluar?', [
+      {
+        text: 'Batal',
+        style: 'cancel'
+      },
+      {
+        text: 'Yakin',
+        onPress: () => onLogout()
+      }
+    ])
+  }
 
   function NoUser () {
     return (
       <View>
+        <Loading visible={loading} />
         <Text style={{ color: '#666666', textAlign: 'center' }}>Silahkan Login terlebih dahulu</Text>
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: 10 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.btn_NoUser}>
@@ -45,7 +86,7 @@ export default function Akun ({ navigation }) {
 
   function MenuKeluar () {
     return (
-      <TouchableOpacity style={{ position: 'absolute', bottom: 10, width: '100%', marginHorizontal: 20, borderWidth: 1, borderColor: 'red', borderRadius: 50, padding: 10 }} activeOpacity={0.5}>
+      <TouchableOpacity onPress={logoutHandler} style={{ position: 'absolute', bottom: 10, width: '100%', marginHorizontal: 20, borderWidth: 1, borderColor: 'red', borderRadius: 50, padding: 10 }} activeOpacity={0.5}>
         <Text style={{ color: 'red', fontSize: 18, textAlign: 'center', fontWeight: 600 }}>Keluar</Text>
       </TouchableOpacity>
     )
@@ -56,10 +97,10 @@ export default function Akun ({ navigation }) {
       <StatusBar backgroundColor={'blue'} barStyle="light-content" />
       <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, minHeight: '100%', paddingHorizontal: 20 }}>
         <View style={{ marginTop: 20 }}>
-          { user ? <Profil User={user} /> : <NoUser /> }
+          { authUser ? <Profil User={pengguna} /> : <NoUser /> }
         </View>
         <View style={{ marginTop: 20 }}>
-          { user ? <MenuEditProfile /> : ''}
+          { authUser ? <MenuEditProfile /> : ''}
           <TouchableOpacity style={styles.btn_menu} activeOpacity={0.5} onPress={() => navigation.navigate('TentangKami')}>
             <Ionicons name={'business-outline'} size={24} color={'black'} />
             <Text style={styles.textBtn_menu}>Tentang Kami</Text>
@@ -69,7 +110,7 @@ export default function Akun ({ navigation }) {
             <Text style={styles.textBtn_menu}>Peraturan Kolam Renang</Text>
           </TouchableOpacity>
         </View>
-        { user ? <MenuKeluar /> : ''}
+        { authUser ? <MenuKeluar /> : ''}
       </View>
     </View>
   )

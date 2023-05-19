@@ -1,6 +1,6 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
-// import { Avatar } from 'react-native-paper'
+import moment from 'moment'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 export default function RatingList ({ rating }) {
@@ -13,7 +13,7 @@ export default function RatingList ({ rating }) {
                 </View>
                 <View>{/* nama dan tanggal */}
                   <Text style={{ color: 'black' }}>{rating.Nama}</Text>
-                  <Text style={{ color: '#666666' }}>({rating.TanggalUpload})</Text>
+                  <Text style={{ color: '#666666' }}>({moment(rating.TanggalUpload).format('DD MMM YYYY')})</Text>
                 </View>
             </View>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
