@@ -1,17 +1,3 @@
-const perusahaan = [
-  {
-    IdPerusahaan: 1,
-    NamaPerusahaan: 'Kolam Sejahtera',
-    Alamat: 'Jalan Sejahtera No. 21, Helvetia Timur, Kec. Medan Helvetia, Kota Medan, Sumatera Utara',
-    Deskripsi: 'Kolam renang Sejahtera merupakan kolam ernang umum yang berdiri pada tahun 2013. Kolam ini memiliki banyak fasilitas yang dapat menjadi pilihan Anda untuk didatangin',
-    JamBuka: '08:00',
-    JamTutup: '18:00',
-    Email: 'kolamsejatera@gmail.com',
-    Instagram: 'kolamrenangsejahtera',
-    NoWA: '6281396428322'
-  }
-]
-
 const metodePembayaran = [
   {
     IdPembayaran: 1,
@@ -172,4 +158,4 @@ const CONFIQ = {
   authUser: 'AUTH_USER'
 }
 
-export { CONFIQ, perusahaan, metodePembayaran, pengguna, pemesanan, detailPemesanan, konfirmasiPembayaran, peraturan }
+export { CONFIQ, metodePembayaran, pengguna, pemesanan, detailPemesanan, konfirmasiPembayaran, peraturan }

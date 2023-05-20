@@ -1,5 +1,6 @@
 import { View, Text, StatusBar, TouchableOpacity, Alert, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState, useCallback } from 'react'
+import { useFocusEffect } from '@react-navigation/native'
 import { CONFIQ } from '../utils/datas'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getDataPengguna, logout } from '../confiqs/api'
@@ -24,22 +25,23 @@ export default function Akun ({ navigation }) {
     if (currentUser) {
       const { data } = await getDataPengguna(currentUser)
       setPengguna(data[0])
+      setAuthUser(currentUser)
     }
-    setAuthUser(currentUser)
   }
 
-  useEffect(() => {
-    setLoading(true)
-    getAuthUser()
-    setLoading(false)
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      setLoading(true)
+      getAuthUser()
+      setLoading(false)
+    }, [])
+  )
 
   async function onLogout () {
     setLoading(true)
     const { error } = await logout()
     if (!error) {
       await AsyncStorage.removeItem(CONFIQ.authUser)
-      // setAuthUser(null)
       navigation.replace('Beranda')
     }
     setLoading(false)
@@ -77,7 +79,7 @@ export default function Akun ({ navigation }) {
 
   function MenuEditProfile () {
     return (
-      <TouchableOpacity style={styles.btn_menu} activeOpacity={0.5}>
+      <TouchableOpacity onPress={() => navigation.navigate('EditAkun', { IdPengguna: authUser })} style={styles.btn_menu} activeOpacity={0.5}>
         <Ionicons name={'person-circle-outline'} size={24} color={'black'} />
         <Text style={styles.textBtn_menu}>Edit Profil</Text>
       </TouchableOpacity>

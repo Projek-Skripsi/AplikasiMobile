@@ -10,6 +10,7 @@ import Daftar from './Daftar'
 import Home from './Beranda'
 import Riwayat from './Riwayat'
 import Akun from './Akun'
+import EditAkun from './EditAkun'
 import Rating from './Rating'
 import DetailPemesanan from './DetailPemesanan'
 import Peraturan from './Peraturan'
@@ -72,6 +73,9 @@ export default function Navigasi () {
             headerShown: false
           }} />
           <HomeStack.Screen name='TentangKami' component={TentangKami} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='EditAkun' component={EditAkun} options={{
             headerShown: false
           }} />
       </HomeStack.Navigator>

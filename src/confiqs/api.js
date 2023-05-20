@@ -1,8 +1,7 @@
 import { Alert } from 'react-native'
 import axios from 'axios'
 import auth from '@react-native-firebase/auth'
-// import storage from '@react-native-firebase/storage'
-// import moment from 'moment'
+import storage from '@react-native-firebase/storage'
 
 const api = axios.create({
   baseURL: 'http://192.168.43.137:3000'
@@ -138,4 +137,21 @@ export async function getDataJumlahPengunjung (hariIni) {
   } catch (error) {
     Alert.alert(error.code, error.message)
   }
+}
+
+export function UploadGambarPengguna (gambar, dataPengguna) {
+  const fileName = Date.now()
+  return (
+    storage().ref('Profile/' + fileName).putFile(gambar)
+      .then(() => {
+        storage().ref('Profile/' + fileName).getDownloadURL()
+          .then(async (url) => {
+            await editDataPengguna({ ...dataPengguna, UrlGambar: url })
+          })
+      })
+  )
+}
+
+export async function editDataPengguna ({ IdPengguna, Nama, Email, UrlGambar, Status }) {
+  await api.put(`/pengguna/${IdPengguna}`, { Nama, Email, UrlGambar, Status })
 }
