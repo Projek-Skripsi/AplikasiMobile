@@ -155,3 +155,27 @@ export function UploadGambarPengguna (gambar, dataPengguna) {
 export async function editDataPengguna ({ IdPengguna, Nama, Email, UrlGambar, Status }) {
   await api.put(`/pengguna/${IdPengguna}`, { Nama, Email, UrlGambar, Status })
 }
+
+export async function getAllDataPemesanan () {
+  try {
+    const response = await api.get('/pemesanan')
+    const data = await response.data.payload.pemesanan
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getAllDataPembayaran () {
+  try {
+    const response = await api.get('/pembayaran')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function addPemesanan (data) {
+  await api.post('/pemesanan', data)
+}

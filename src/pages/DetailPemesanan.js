@@ -130,7 +130,7 @@ export default function DetailPemesanan ({ navigation }) {
           <Checkbox status={checked ? 'checked' : 'unchecked'} onPress={() => { setChecked(!checked) }} color='#106AF0' />
           <Text style={{ color: 'black', fontSize: 15 }}>Saya menyetujui <Text style={{ color: '#106AF0', textDecorationLine: 'underline' }} onPress={() => navigation.navigate('Peraturan')}>Peraturan</Text> yang berlaku</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Pembayaran', { Pemesanan: { TanggalMasuk: moment(tanggalMasuk).format('YYYY-MM-DD'), detail: pemesanan } })} disabled={!checked || !total} style={{ borderRadius: 50, padding: 10, backgroundColor: '#106AF0' }} activeOpacity={0.5}>
+        <TouchableOpacity onPress={() => navigation.navigate('Pembayaran', { Pemesanan: { TanggalMasuk: moment(tanggalMasuk).format('YYYY-MM-DD'), Total: total, detail: pemesanan } })} disabled={!checked || !total} style={{ borderRadius: 50, padding: 10, backgroundColor: '#106AF0' }} activeOpacity={0.5}>
           <Text style={[styles.textBtn, { color: 'white' }]}>Lanjutkan</Text>
         </TouchableOpacity>
       </View>
