@@ -109,6 +109,16 @@ export async function getDataRating () {
   }
 }
 
+export async function getDataRatingByIdPemesanan (IdPemesanan) {
+  try {
+    const response = await api.get(`/rating/${IdPemesanan}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
 export async function getDataCarousel () {
   try {
     const response = await api.get('/carousel')
@@ -178,4 +188,28 @@ export async function getAllDataPembayaran () {
 
 export async function addPemesanan (data) {
   await api.post('/pemesanan', data)
+}
+
+export async function getDataPemesananByUser (IdPengguna) {
+  try {
+    const response = await api.get(`/pemesanan/user/${IdPengguna}`)
+    const data = await response.data.payload.pemesanan
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function getDataPemesananById (IdPemesanan) {
+  try {
+    const response = await api.get(`/pemesanan/${IdPemesanan}`)
+    const data = await response.data.payload.pemesanan
+    return { data }
+  } catch (error) {
+    Alert.alert(error.code, error.message)
+  }
+}
+
+export async function addRating (data) {
+  await api.post('/rating', data)
 }

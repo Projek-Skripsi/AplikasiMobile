@@ -13,6 +13,7 @@ import Akun from './Akun'
 import EditAkun from './EditAkun'
 import Rating from './Rating'
 import DetailPemesanan from './DetailPemesanan'
+import DetailRiwayat from './DetailRiwayat'
 import Pembayaran from './Pembayaran'
 import Peraturan from './Peraturan'
 import TentangKami from './TentangKami'
@@ -65,6 +66,9 @@ export default function Navigasi () {
             headerShown: false
           }} />
           <HomeStack.Screen name='Pembayaran' component={Pembayaran} options={{
+            headerShown: false
+          }} />
+          <HomeStack.Screen name='DetailRiwayat' component={DetailRiwayat} options={{
             headerShown: false
           }} />
           <HomeStack.Screen name='Login' component={Login} options={{
