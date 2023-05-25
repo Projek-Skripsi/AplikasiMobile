@@ -15,7 +15,7 @@ export default function Riwayat () {
   const [authUser, setAuthUser] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [riwayat, setRiwayat] = useState([])
+  const [riwayat, setRiwayat] = useState()
 
   async function getAuthUser () {
     const currentUser = await AsyncStorage.getItem(CONFIQ.authUser)
@@ -43,21 +43,6 @@ export default function Riwayat () {
     setRefreshing(false)
   }
 
-  function RiwayatShow () {
-    if (riwayat.length !== 0) {
-      return (
-        riwayat.map((item) => (
-          <RiwayatList key={item.IdPemesanan} riwayat={item} />
-        ))
-      )
-    }
-    return (
-      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Image source={require('../assests/Kosong.png')} style={{ width: 300, height: 300 }} />
-      </View>
-    )
-  }
-
   if (!authUser) {
     return (
       <View style={{ flex: 1, backgroundColor: 'blue' }}>
@@ -70,6 +55,21 @@ export default function Riwayat () {
     )
   }
 
+  if (!riwayat) {
+    return (
+      <View style={{ flex: 1, backgroundColor: 'blue' }}>
+        <StatusBar backgroundColor={'blue'} barStyle="light-content" />
+        <Loading visible={loading} />
+        <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, minHeight: '100%', paddingHorizontal: 20 }}>
+          <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Riwayat Pemesanan</Text>
+          <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Image source={require('../assests/Kosong.png')} style={{ width: 300, height: 300 }} />
+          </View>
+        </View>
+      </View>
+    )
+  }
+
   return (
     <View style={{ flex: 1, backgroundColor: 'blue' }}>
       <StatusBar backgroundColor={'blue'} barStyle="light-content" />
@@ -77,7 +77,9 @@ export default function Riwayat () {
       <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, minHeight: '100%', paddingHorizontal: 20 }}>
         <ScrollView showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refreshPage} />} >
           <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Riwayat Pemesanan</Text>
-          <RiwayatShow />
+          {riwayat.map((item) => (
+            <RiwayatList key={item.IdPemesanan} riwayat={item} />
+          ))}
         </ScrollView>
       </View>
     </View>

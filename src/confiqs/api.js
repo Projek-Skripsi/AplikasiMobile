@@ -213,3 +213,23 @@ export async function getDataPemesananById (IdPemesanan) {
 export async function addRating (data) {
   await api.post('/rating', data)
 }
+
+export async function editDataPemesanan ({ IdPemesanan, Status }) {
+  await api.put(`/pemesanan/${IdPemesanan}`, { Status })
+}
+
+export function UploadGambarBuktiPembayaran (gambar, data) {
+  return (
+    storage().ref('BuktiBayar/' + data.IdPemesanan).putFile(gambar)
+      .then(() => {
+        storage().ref('BuktiBayar/' + data.IdPemesanan).getDownloadURL()
+          .then(async (url) => {
+            await addKonfirmasiPembayaran({ ...data, UrlBuktiBayar: url })
+          })
+      })
+  )
+}
+
+async function addKonfirmasiPembayaran ({ IdPemesanan, UrlBuktiBayar, TanggalUpload }) {
+  await api.post('/konfirmasi', { IdPemesanan, UrlBuktiBayar, TanggalUpload })
+}

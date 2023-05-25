@@ -36,8 +36,8 @@ export default function BtnRating ({ IdPemesanan }) {
           Bintang: bintang,
           TanggalUpload: moment().format('YYYY-MM-DD')
         }
-        await addRating(payload)
         hideModal()
+        await addRating(payload)
       } catch {
         throw Error('error')
       }
@@ -64,15 +64,12 @@ export default function BtnRating ({ IdPemesanan }) {
         <View style={styles.containerModal}>
           <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 20, width: 300 }}>
             <Rating startingValue={bintang} onSwipeRating={false} onFinishRating={(value) => setBintang(value)} />
-            <Text style={{ color: 'black', textAlign: 'right' }}>{bintang}</Text>
             <TextInput value={ulasan} onChangeText={value => setUlasan(value)} multiline numberOfLines={4} maxLength={100} placeholder='Tulis Ulasan...' placeholderTextColor={'#666666'} style={{ borderColor: '#666666', borderWidth: 1, color: 'black', textAlignVertical: 'top', fontSize: 18, marginTop: 10 }} />
             <Text style={{ color: 'black', textAlign: 'right' }}>{ulasan.length}/100</Text>
             <TouchableOpacity onPress={() => createRating()} style={[styles.btnAction, { backgroundColor: '#106AF0', marginTop: 20, marginBottom: 10 }] } >
               <Text style={{ color: 'white', fontSize: 18, fontWeight: 600, textAlign: 'center' }}>Kirim Ulasan</Text>
             </TouchableOpacity>
-            <Pressable
-              style={{ alignItems: 'center' }}
-              onPress={() => hideModal()}>
+            <Pressable style={{ alignItems: 'center' }} onPress={() => hideModal()}>
               <Text style={{ color: 'red' }}>Tutup</Text>
             </Pressable>
           </View>
