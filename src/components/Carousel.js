@@ -14,7 +14,7 @@ export default function CarouselImg ({ dataCarousel }) {
 
   const renderItem = ({ item }) => {
     return (
-      <Image source={{ uri: item.UrlGambar }} resizeMode='cover' style={styles.gambar} />
+      <Image source={{ uri: item.UrlGambar }} resizeMode='stretch' style={styles.gambar} />
     )
   }
 

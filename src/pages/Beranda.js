@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   welcomeText: { color: 'white', fontFamily: 'Inter', fontSize: 25, textAlign: 'center', marginTop: 15, width: '80%' },
   pengunjungText: { marginVertical: 20, color: 'white', fontSize: 16 },
   carousel: { overflow: 'hidden', padding: 20, paddingBottom: 0 },
-  menu: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
+  menu: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
   menu_judul: { color: 'black', fontSize: 20, fontWeight: 700, paddingHorizontal: 20 },
   btn_pesan: { position: 'absolute', bottom: 0, alignItems: 'center', backgroundColor: '#106AF0', marginVertical: 20, marginHorizontal: '20%', width: '60%', borderRadius: 50 }
 })
@@ -102,7 +102,7 @@ export default function Beranda ({ navigation }) {
               <Carousel dataCarousel={carousel}/>
             </View>
             {kategoriKolam.map((item, index) => (
-              <View key={index}>
+              <View key={index} style={{ marginBottom: 5 }}>
                 <View style={styles.menu}>
                   <Text style={styles.menu_judul}>Kolam {item.NamaKategori}</Text>
                   <Text style={styles.menu_judul}>{hari === 'Saturday' || hari === 'Sunday' ? currencyFormat(item.HargaLibur) : currencyFormat(item.HargaNormal) }</Text>
