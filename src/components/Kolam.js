@@ -3,9 +3,9 @@ import { Card } from 'react-native-paper'
 import React from 'react'
 
 const styles = StyleSheet.create({
-  card: { width: 250, height: 230, backgroundColor: 'white', marginLeft: 20, marginTop: 5, marginBottom: 30, borderRadius: 30, padding: 5 },
+  card: { width: 250, height: 250, backgroundColor: 'white', marginLeft: 20, marginTop: 5, marginBottom: 30, borderRadius: 30, padding: 5 },
   card_gambar: { height: 150, borderRadius: 30, borderTopRightRadius: 30, marginBottom: 10 },
-  status: { color: '#969696', fontSize: 16, marginTop: 0 }
+  status: { color: '#969696', fontSize: 16, marginTop: 5 }
 })
 
 export default function Kolam ({ dataKolam }) {
