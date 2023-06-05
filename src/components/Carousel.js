@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 
 const styles = StyleSheet.create({
-  gambar: { width: '90%', height: 250, borderRadius: 30 }
+  gambar: { width: '90%', height: 230, borderRadius: 30 }
 })
 
 export default function CarouselImg ({ dataCarousel }) {
