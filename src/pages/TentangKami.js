@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { getDataPerusahaan } from '../confiqs/api'
 import MCI from 'react-native-vector-icons/MaterialCommunityIcons'
 import Loading from '../components/Loading'
+import BtnGoBack from '../components/BtnGoBack'
 
 const styles = StyleSheet.create({
   text: { color: '#666666', fontSize: 18, textAlign: 'justify' },
-  kontak: { color: '#106AF0', fontSize: 18, textAlign: 'justify', marginVertical: 5 }
+  kontak: { color: '#106AF0', fontSize: 18, textAlign: 'justify', marginVertical: 5 },
+  Header: { marginTop: 50, marginBottom: 30 }
 })
 
 export default function TentangKami () {
@@ -29,7 +31,10 @@ export default function TentangKami () {
         <StatusBar backgroundColor={'blue'} barStyle="light-content" />
         <Loading visible={loading} />
         <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, paddingHorizontal: 20, minHeight: '100%' }}>
-          <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Tentang Kami</Text>
+          <View style={styles.Header}>
+            <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600 }}>Tentang Kami</Text>
+            <BtnGoBack />
+          </View>
           <ScrollView showsVerticalScrollIndicator={false} >
             {perusahaan && perusahaan.map((item) => (
               <View key={item.IdPerusahaan} >

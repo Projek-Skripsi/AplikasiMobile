@@ -8,9 +8,11 @@ import ImageCropPicker from 'react-native-image-crop-picker'
 import { currencyFormat } from '../utils/mataUang'
 import Loading from '../components/Loading'
 import LabelStatus from '../components/LabelStatus'
+import BtnGoBack from '../components/BtnGoBack'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 
 const styles = StyleSheet.create({
+  Header: { marginTop: 50, marginBottom: 30 },
   subJudul: { color: '#666666', fontSize: 16 },
   text1: { color: 'black', fontSize: 16, fontWeight: 500 },
   btnUpload: { borderWidth: 1, borderColor: '#106AF0', borderRadius: 50, padding: 10, marginVertical: 10 },
@@ -98,7 +100,10 @@ export default function DetailRiwayat (props) {
       <Loading visible={loading} />
       <StatusBar backgroundColor={'blue'} barStyle="light-content" />
       <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, minHeight: '100%', paddingHorizontal: 20 }}>
-        <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Detail Pemesanan</Text>
+        <View style={styles.Header}>
+          <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600 }}>Detail Riwayat</Text>
+          <BtnGoBack />
+        </View>
         <View>
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5, paddingVertical: 10, borderStyle: 'dashed', borderBottomWidth: 2, borderColor: '#666666' }}>
             <Text style={{ color: '#666666', fontSize: 18, fontWeight: 800 }}>#{data.IdPemesanan}</Text>

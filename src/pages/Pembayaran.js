@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { RadioButton } from 'react-native-paper'
 import { getAllDataPemesanan, getAllDataPembayaran, addPemesanan } from '../confiqs/api'
 import Loading from '../components/Loading'
+import BtnGoBack from '../components/BtnGoBack'
 import moment from 'moment'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CONFIQ } from '../utils/datas'
 
 const styles = StyleSheet.create({
+  Header: { marginTop: 50, marginBottom: 30 },
   subJudul: { color: 'black', fontSize: 18, fontWeight: 500 },
   card: { display: 'flex', flexDirection: 'row', borderWidth: 1, marginTop: 15, padding: 15, borderColor: '#666666', borderRadius: 20 },
   btn: { position: 'absolute', bottom: 0, marginVertical: 20, marginHorizontal: 20, width: '100%', borderRadius: 50, padding: 10, backgroundColor: '#106AF0' },
@@ -60,7 +62,7 @@ export default function Pembayaran (props) {
       }
       await addPemesanan(payload)
       Alert.alert('Berhasil', 'Lihat pemesanan dan upload bukti pembayaran Anda pada halaman riwayat!')
-      props.navigation.navigate('Beranda')
+      props.navigation.replace('DetailRiwayat', { idPemesanan })
     } catch {
       throw Error('error')
     }
@@ -73,7 +75,10 @@ export default function Pembayaran (props) {
       <Loading visible={loading} />
       <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, minHeight: '100%', paddingHorizontal: 20 }}>
         <ScrollView showsVerticalScrollIndicator={false} >
-          <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Metode Pembayaran</Text>
+          <View style={styles.Header}>
+            <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600 }}>Metode Pembayaran</Text>
+            <BtnGoBack />
+          </View>
           <Text style={styles.subJudul}>Pilih metode pembayaran</Text>
           {pembayaran.map((item) => (
             <TouchableOpacity onPress={() => setIdPembayaran(item.IdPembayaran)} activeOpacity={0.5} key={item.IdPembayaran} style={[styles.card, idPembayaran === item.IdPembayaran && { borderColor: '#106AF0' }]}>

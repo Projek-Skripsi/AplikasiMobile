@@ -11,7 +11,7 @@ export function register (nama, email, password) {
   return (
     auth().createUserWithEmailAndPassword(email, password)
       .then(async (res) => {
-        await addDataRegister({ IdPengguna: res.user.uid, Nama: nama, Email: email })
+        await addDataRegister({ Nama: nama, Email: email, IdLogin: res.user.uid })
         return { error: false }
       })
       .catch((error) => {
@@ -21,8 +21,8 @@ export function register (nama, email, password) {
   )
 }
 
-export async function addDataRegister ({ IdPengguna, Nama, Email, UrlGambar = 'https://firebasestorage.googleapis.com/v0/b/kolamsejahtera-c2d19.appspot.com/o/profilTemplate.jpg?alt=media&token=250053b6-930e-4179-b8f2-a7aaa99fc8ce', Status = 'Aktif' }) {
-  await api.post('/pengguna', { IdPengguna, Nama, Email, UrlGambar, Status })
+export async function addDataRegister ({ IdLogin, Nama, Email, UrlGambar = 'https://firebasestorage.googleapis.com/v0/b/kolamsejahtera-c2d19.appspot.com/o/profilTemplate.jpg?alt=media&token=250053b6-930e-4179-b8f2-a7aaa99fc8ce', Status = 'Aktif' }) {
+  await api.post('/pengguna', { IdLogin, Nama, Email, UrlGambar, Status })
 }
 
 export function login (email, password) {
