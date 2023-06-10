@@ -5,10 +5,12 @@ import DatePicker from 'react-native-date-picker'
 import moment from 'moment'
 import { getDataKategoriKolam } from '../confiqs/api'
 import Loading from '../components/Loading'
+import BtnGoBack from '../components/BtnGoBack'
 import MCI from 'react-native-vector-icons/MaterialCommunityIcons'
 import { currencyFormat } from '../utils/mataUang'
 
 const styles = StyleSheet.create({
+  Header: { marginTop: 50, marginBottom: 30 },
   subJudul: { color: 'black', fontSize: 18, fontWeight: 500 },
   btn_setTanggal: { display: 'flex', flexDirection: 'row', borderWidth: 0.5, borderColor: '#666666', borderRadius: 10, padding: 10, alignItems: 'center', gap: 5, marginVertical: 10 },
   cardKategori: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 5, marginTop: 10, borderRadius: 10, backgroundColor: '#FAFAFA' },
@@ -88,7 +90,10 @@ export default function DetailPemesanan ({ navigation }) {
       <StatusBar backgroundColor={'blue'} barStyle="light-content" />
       <Loading visible={loading} />
       <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, minHeight: '100%', paddingHorizontal: 20 }}>
-      <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Detail Pemesanan</Text>
+        <View style={styles.Header}>
+          <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600 }}>Detail Pemesanan</Text>
+          <BtnGoBack />
+        </View>
       <Text style={styles.subJudul}>Tanggal Berenang</Text>
       <TouchableOpacity onPress={() => setModal(true)} style={styles.btn_setTanggal} >
         <MCI name='calendar-month-outline' size={22} color='#666666' />
@@ -130,7 +135,7 @@ export default function DetailPemesanan ({ navigation }) {
           <Checkbox status={checked ? 'checked' : 'unchecked'} onPress={() => { setChecked(!checked) }} color='#106AF0' />
           <Text style={{ color: 'black', fontSize: 15 }}>Saya menyetujui <Text style={{ color: '#106AF0', textDecorationLine: 'underline' }} onPress={() => navigation.navigate('Peraturan')}>Peraturan</Text> yang berlaku</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Pembayaran', { Pemesanan: { TanggalMasuk: moment(tanggalMasuk).format('YYYY-MM-DD'), Total: total, detail: pemesanan } })} disabled={!checked || !total} style={{ borderRadius: 50, padding: 10, backgroundColor: '#106AF0' }} activeOpacity={0.5}>
+        <TouchableOpacity onPress={() => navigation.navigate('Pembayaran', { Pemesanan: { TanggalMasuk: moment(tanggalMasuk).format('YYYY-MM-DD'), Total: total, detail: pemesanan } })} disabled={!checked || !total} style={[{ borderRadius: 50, padding: 10 }, !checked || !total ? { backgroundColor: '#DDDDDD' } : { backgroundColor: '#106AF0' }]} activeOpacity={0.5}>
           <Text style={[styles.textBtn, { color: 'white' }]}>Lanjutkan</Text>
         </TouchableOpacity>
       </View>

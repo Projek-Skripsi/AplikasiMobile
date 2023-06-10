@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, Alert, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StatusBar, Alert, StyleSheet, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { register } from '../confiqs/api'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -39,14 +39,14 @@ export default function Daftar ({ navigation }) {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: 'blue' }}>
       <Loading visible={loading} />
       <StatusBar backgroundColor={'blue'} barStyle="light-content" />
-      <View style={{ backgroundColor: 'blue' }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }} >
         <Image source={require('../assests/Logo.png')} resizeMode='stretch' style={{ width: 250, height: 150 }} />
-        <View style={{ position: 'relative', top: -80, backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, marginTop: 50, minHeight: '100%' }}>
+        <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, marginTop: -30, marginBottom: 20, minHeight: '100%' }}>
           <View style={{ marginTop: 100, marginHorizontal: 30, marginBottom: 30 }}>
-           <Text style={ [styles.loginText, { fontWeight: 'bold', fontSize: 30 }] }>DAFTAR</Text>
+            <Text style={ [styles.loginText, { fontWeight: 'bold', fontSize: 30 }] }>DAFTAR</Text>
             <Text style={ [styles.loginText, { fontSize: 20 }] } >Buat akun baru</Text>
           </View>
           <View style={{ marginHorizontal: 30 }}>
@@ -71,7 +71,7 @@ export default function Daftar ({ navigation }) {
               <Text onPress={() => navigation.replace('Login')} style={{ color: '#106AF0', fontWeight: 'bold' }}> Masuk</Text>
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </View>
   )
 }

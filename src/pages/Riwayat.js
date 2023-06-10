@@ -15,7 +15,7 @@ export default function Riwayat () {
   const [authUser, setAuthUser] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [riwayat, setRiwayat] = useState()
+  const [riwayat, setRiwayat] = useState([])
 
   async function getAuthUser () {
     const currentUser = await AsyncStorage.getItem(CONFIQ.authUser)
@@ -29,10 +29,12 @@ export default function Riwayat () {
 
   useFocusEffect(
     useCallback(() => {
-      setLoading(true)
-      getAuthUser()
-      getPemesananByIdPengguna()
-      setLoading(false)
+      (async () => {
+        setLoading(true)
+        await getAuthUser()
+        await getPemesananByIdPengguna()
+        setLoading(false)
+      })()
     }, [])
   )
 
@@ -55,16 +57,18 @@ export default function Riwayat () {
     )
   }
 
-  if (!riwayat) {
+  if (riwayat.length === 0) {
     return (
       <View style={{ flex: 1, backgroundColor: 'blue' }}>
         <StatusBar backgroundColor={'blue'} barStyle="light-content" />
         <Loading visible={loading} />
         <View style={{ backgroundColor: 'white', borderTopRightRadius: 30, borderTopLeftRadius: 20, minHeight: '100%', paddingHorizontal: 20 }}>
-          <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Riwayat Pemesanan</Text>
-          <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Image source={require('../assests/Kosong.png')} style={{ width: 300, height: 300 }} />
-          </View>
+          <ScrollView showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refreshPage} />} >
+            <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600, marginTop: 50, marginBottom: 30 }}>Riwayat Pemesanan</Text>
+            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Image source={require('../assests/Kosong.png')} style={{ width: 300, height: 300 }} />
+            </View>
+          </ScrollView>
         </View>
       </View>
     )
