@@ -26,7 +26,7 @@ export default function DetailPemesanan ({ navigation }) {
   const [total, setTotal] = useState(0)
   const [checked, setChecked] = useState(false)
   const [modal, setModal] = useState(false)
-  const hari = moment().format('dddd')
+  const hari = moment(tanggalMasuk).format('dddd')
 
   async function getKategori () {
     const { data } = await getDataKategoriKolam()
