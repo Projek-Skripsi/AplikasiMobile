@@ -65,14 +65,16 @@ export default function Beranda ({ navigation }) {
 
   useFocusEffect(
     useCallback(() => {
-      setLoading(true)
-      getCarousel()
-      getKategori()
-      getKolam()
-      getRating()
-      getJumlahPengunjung()
-      getAuthUser()
-      setLoading(false)
+      (async () => {
+        setLoading(true)
+        await getCarousel()
+        await getKategori()
+        await getKolam()
+        await getRating()
+        await getJumlahPengunjung()
+        await getAuthUser()
+        setLoading(false)
+      })()
     }, [])
   )
 

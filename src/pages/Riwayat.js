@@ -38,6 +38,10 @@ export default function Riwayat () {
     }, [])
   )
 
+  setTimeout(async () => {
+    await getPemesananByIdPengguna()
+  }, 1)
+
   async function refreshPage () {
     setRefreshing(true)
     await getAuthUser()
