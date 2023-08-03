@@ -2,6 +2,7 @@ import { View, Text, ScrollView, StatusBar, StyleSheet, TouchableOpacity, Alert 
 import React, { useEffect, useState } from 'react'
 import { RadioButton } from 'react-native-paper'
 import { getAllDataPemesanan, getAllDataPembayaran, addPemesanan } from '../confiqs/api'
+import { currencyFormat } from '../utils/mataUang'
 import Loading from '../components/Loading'
 import BtnGoBack from '../components/BtnGoBack'
 import moment from 'moment'
@@ -47,26 +48,37 @@ export default function Pembayaran (props) {
     setLoading(false)
   }, [])
 
-  async function onCreatePemesanan () {
-    setLoading(true)
-    try {
-      const payload = {
-        IdPemesanan: idPemesanan,
-        IdPengguna: authUser,
-        TanggalPemesanan: moment().format('YYYY-MM-DD hh:mm:ss'),
-        TanggalMasuk: pemesanan.TanggalMasuk,
-        Total: pemesanan.Total,
-        IdPembayaran: idPembayaran,
-        Status: 'Menunggu Pembayaran',
-        detail: pemesanan.detail
+  function onCreatePemesanan () {
+    Alert.alert('Konfirmasi Pemesanan', 'Yakin pemesanan telah sesuai?', [
+      {
+        text: 'Batal',
+        style: 'cancel'
+      },
+      {
+        text: 'Yakin',
+        onPress: async () => {
+          setLoading(true)
+          try {
+            const payload = {
+              IdPemesanan: idPemesanan,
+              IdPengguna: authUser,
+              TanggalPemesanan: moment().format('YYYY-MM-DD hh:mm:ss'),
+              TanggalMasuk: pemesanan.TanggalMasuk,
+              Total: pemesanan.Total,
+              IdPembayaran: idPembayaran,
+              Status: 'Menunggu Pembayaran',
+              detail: pemesanan.detail
+            }
+            await addPemesanan(payload)
+            Alert.alert('Berhasil', 'Lihat pemesanan dan upload bukti pembayaran Anda pada halaman riwayat!')
+            props.navigation.replace('DetailRiwayat', { idPemesanan })
+          } catch {
+            throw Error('error')
+          }
+          setLoading(false)
+        }
       }
-      await addPemesanan(payload)
-      Alert.alert('Berhasil', 'Lihat pemesanan dan upload bukti pembayaran Anda pada halaman riwayat!')
-      props.navigation.replace('DetailRiwayat', { idPemesanan })
-    } catch {
-      throw Error('error')
-    }
-    setLoading(false)
+    ])
   }
 
   return (
@@ -79,6 +91,28 @@ export default function Pembayaran (props) {
             <Text style={{ color: 'black', textAlign: 'center', fontSize: 30, fontWeight: 600 }}>Metode Pembayaran</Text>
             <BtnGoBack />
           </View>
+          {/* RINCIAN PEMESANAN */}
+          <View style={{ marginBottom: 30, borderWidth: 1, borderRadius: 10, padding: 10, borderColor: 'green', backgroundColor: '#E5FCE1', elevation: 3 }}>
+            <Text style={[styles.subJudul, { marginBottom: 10 }]}>Rincian Pemesanan</Text>
+            <View style={{ marginBottom: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={{ color: 'black', fontWeight: 500 }}>Tanggal Masuk</Text>
+              <Text style={{ color: 'black', fontWeight: 400 }}>{moment(pemesanan.TanggalMasuk).format('DD MMM YYYY')}</Text>
+            </View>
+            <View style={{ marginBottom: 10 }}>
+              <Text style={{ color: 'black', fontWeight: 500 }}>Tiket</Text>
+              {pemesanan.detail.map((item, index) => (
+                  <View key={index} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Text style={{ color: 'black', fontWeight: 400 }}>{`Tiket ${item.NamaKategori} = ${item.Qty} x ${currencyFormat(item.Harga)}`}</Text>
+                      <Text style={{ color: 'black', fontWeight: 400 }}>{currencyFormat(item.Harga * item.Qty)}</Text>
+                  </View>
+              ))}
+            </View>
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={{ color: 'black', fontWeight: 500 }}>Total</Text>
+              <Text style={{ color: 'black', fontWeight: 400 }}>{currencyFormat(pemesanan.Total)}</Text>
+            </View>
+          </View>
+          {/* PILIH METODE PEMBAYARAN */}
           <Text style={styles.subJudul}>Pilih metode pembayaran</Text>
           {pembayaran.map((item) => (
             <TouchableOpacity onPress={() => setIdPembayaran(item.IdPembayaran)} activeOpacity={0.5} key={item.IdPembayaran} style={[styles.card, idPembayaran === item.IdPembayaran && { borderColor: '#106AF0' }]}>

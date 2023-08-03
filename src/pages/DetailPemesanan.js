@@ -51,6 +51,7 @@ export default function DetailPemesanan ({ navigation }) {
   function tambahQty (item) {
     const payload = {
       IdKategori: item.IdKategori,
+      NamaKategori: item.NamaKategori,
       Harga: hari === 'Saturday' || hari === 'Sunday' ? item.HargaLibur : item.HargaNormal
     }
 

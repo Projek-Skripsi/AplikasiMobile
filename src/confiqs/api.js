@@ -162,8 +162,8 @@ export function UploadGambarPengguna (gambar, dataPengguna) {
   )
 }
 
-export async function editDataPengguna ({ IdPengguna, Nama, Email, UrlGambar, Status }) {
-  await api.put(`/pengguna/${IdPengguna}`, { Nama, Email, UrlGambar, Status })
+export async function editDataPengguna ({ IdPengguna, Nama, Email, NoTelp, JenisKelamin, UrlGambar, Status }) {
+  await api.put(`/pengguna/${IdPengguna}`, { Nama, Email, NoTelp, JenisKelamin, UrlGambar, Status })
 }
 
 export async function getAllDataPemesanan () {

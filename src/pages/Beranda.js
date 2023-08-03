@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, StatusBar, RefreshControl, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState, useCallback } from 'react'
-import { useFocusEffect } from '@react-navigation/native'
+import React, { useState, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from 'react-native-paper'
 import Loading from '../components/Loading'
@@ -63,20 +62,18 @@ export default function Beranda ({ navigation }) {
     setJmlhPengunjung(data[0].pengunjungHariIni)
   }
 
-  useFocusEffect(
-    useCallback(() => {
-      (async () => {
-        setLoading(true)
-        await getCarousel()
-        await getKategori()
-        await getKolam()
-        await getRating()
-        await getJumlahPengunjung()
-        await getAuthUser()
-        setLoading(false)
-      })()
-    }, [])
-  )
+  useEffect(() => {
+    (async () => {
+      setLoading(true)
+      await getCarousel()
+      await getKategori()
+      await getKolam()
+      await getRating()
+      await getJumlahPengunjung()
+      await getAuthUser()
+      setLoading(false)
+    })()
+  }, [])
 
   async function refreshPage () {
     setRefreshing(true)
