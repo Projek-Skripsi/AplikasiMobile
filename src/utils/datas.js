@@ -10,8 +10,14 @@ const peraturan = [
   'Kolam Renang ini diawasi CCTV, mohon untuk tidak melakukan perbuatan asusila dan tindakan pencurian dan kekerasan di area kolam renang. Segala tindakan yang melanggar hukum akan kami laporkan kepihak berwajib.'
 ]
 
+const KategoriRating = [
+  'Pelayanan',
+  'Fasilitas',
+  'Kebersihan'
+]
+
 const CONFIQ = {
   authUser: 'AUTH_USER'
 }
 
-export { CONFIQ, peraturan }
+export { CONFIQ, peraturan, KategoriRating }
