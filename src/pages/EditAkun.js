@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { getDataPengguna, UploadGambarPengguna, editDataPengguna } from '../confiqs/api'
 import ImageCropPicker from 'react-native-image-crop-picker'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { RadioButton } from 'react-native-paper'
 import Loading from '../components/Loading'
 import BtnGoBack from '../components/BtnGoBack'
 
@@ -18,6 +19,8 @@ export default function EditAkun (props) {
   const IdPengguna = props.route.params.IdPengguna
   const [pengguna, setPengguna] = useState([])
   const [nama, setNama] = useState('')
+  const [noTelp, setNoTelp] = useState('')
+  const [jenisKelamin, setJenisKelamin] = useState('')
   const [edit, setEdit] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -25,6 +28,8 @@ export default function EditAkun (props) {
     const { data } = await getDataPengguna(IdPengguna)
     setPengguna(data[0])
     setNama(data[0].Nama)
+    setNoTelp(data[0].NoTelp)
+    setJenisKelamin(data[0].JenisKelamin)
   }
 
   useEffect(() => {
@@ -46,12 +51,12 @@ export default function EditAkun (props) {
   }
 
   async function simpanData () {
-    if (nama === '') {
-      Alert.alert('Info', 'Nama tidak boleh kosong!')
+    if (nama === '' || noTelp === '' || jenisKelamin === '') {
+      Alert.alert('Info', 'Semua data harus terisi!')
     }
     else {
       setLoading(true)
-      await editDataPengguna({ IdPengguna, Nama: nama })
+      await editDataPengguna({ IdPengguna, Nama: nama, NoTelp: noTelp, JenisKelamin: jenisKelamin })
       await getPengguna()
       setLoading(false)
       setEdit(!edit)
@@ -94,8 +99,20 @@ export default function EditAkun (props) {
           </View>
         </View>
         <View style={{ marginTop: 30 }}>
-          <TextInput editable={edit} maxLength={25} value={nama} onChangeText={value => setNama(value)} placeholder='Nama' style={edit ? styles.textInput : [styles.textInput, { backgroundColor: '#EEEEEE', color: '#666666' }]} />
+          <TextInput editable={edit} maxLength={25} value={nama} onChangeText={value => setNama(value)} placeholderTextColor='#666666' placeholder='Nama' style={edit ? styles.textInput : [styles.textInput, { backgroundColor: '#EEEEEE', color: '#666666' }]} />
           <TextInput editable={false} value={pengguna.Email} placeholder='Nama' style={[styles.textInput, { backgroundColor: '#EEEEEE', color: '#666666' }]} />
+          <TextInput inputMode='numeric' editable={edit} maxLength={25} value={noTelp} onChangeText={value => setNoTelp(value)} placeholderTextColor='#666666' placeholder='No Telepon' style={edit ? styles.textInput : [styles.textInput, { backgroundColor: '#EEEEEE', color: '#666666' }]} />
+          <Text style={{ color: 'black', fontSize: 18, marginTop: 5 }}>Jenis Kelamin</Text>
+          <View style={{ display: 'flex', flexDirection: 'row', gap: 20 }}>
+            <Pressable disabled={!edit} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} onPress={() => setJenisKelamin('Pria')}>
+              <RadioButton color='#106AF0' disabled={!edit} value="Pria" status={ jenisKelamin === 'Pria' ? 'checked' : 'unchecked' } onPress={() => setJenisKelamin('Pria')}/>
+              <Text style={{ color: !edit ? '#EEEEEE' : 'black', fontSize: 18 }}>Pria</Text>
+            </Pressable>
+            <Pressable disabled={!edit} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} onPress={() => setJenisKelamin('Wanita')}>
+              <RadioButton color='#106AF0' disabled={!edit} value="Wanita" status={ jenisKelamin === 'Wanita' ? 'checked' : 'unchecked' } onPress={() => setJenisKelamin('Wanita')}/>
+              <Text style={{ color: !edit ? '#EEEEEE' : 'black', fontSize: 18 }}>Wanita</Text>
+            </Pressable>
+          </View>
         </View>
         { edit ? <BtnSimpan /> : <BtnEdit />}
       </View>
